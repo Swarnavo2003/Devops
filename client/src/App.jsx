@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from "react";
-import {
-  Plus,
-  Trash2,
-  Edit3,
-  Save,
-  X,
-  Loader2,
-  CheckSquare,
-} from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Edit3, Save, X, Loader2, CheckSquare } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL;
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [newTask, setNewTask] = useState({ title: "", description: "" });
+  const [newTask, setNewTask] = useState({ title: '', description: '' });
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
@@ -30,7 +22,7 @@ function App() {
         setTasks(data.tasks || []);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     } finally {
       setLoading(false);
     }
@@ -41,26 +33,26 @@ function App() {
 
     try {
       const response = await fetch(`${API_BASE}/tasks`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newTask),
       });
 
       if (response.ok) {
         const data = await response.json();
         setTasks([...tasks, data.task]);
-        setNewTask({ title: "", description: "" });
+        setNewTask({ title: '', description: '' });
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   };
 
   const updateTask = async (id, updates) => {
     try {
       const response = await fetch(`${API_BASE}/tasks/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
       });
 
@@ -70,21 +62,21 @@ function App() {
         setEditingId(null);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   };
 
   const deleteTask = async (id) => {
     try {
       const response = await fetch(`${API_BASE}/tasks/${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
 
       if (response.ok) {
         setTasks(tasks.filter((task) => task._id !== id));
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   };
 
@@ -103,17 +95,13 @@ function App() {
               type="text"
               placeholder="Task Title"
               value={newTask.title}
-              onChange={(e) =>
-                setNewTask({ ...newTask, title: e.target.value })
-              }
+              onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
             />
             <textarea
               placeholder="Task Description"
               value={newTask.description}
-              onChange={(e) =>
-                setNewTask({ ...newTask, description: e.target.value })
-              }
+              onChange={(e) => setNewTask({ ...newTask, description: e.target.value })}
               className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
               rows="2"
             />
@@ -138,10 +126,7 @@ function App() {
             <p className="text-gray-500 italic">No tasks yet</p>
           ) : (
             tasks.map((task) => (
-              <div
-                key={task._id}
-                className="mb-3 p-4 border rounded-xl bg-gray-50 shadow-sm"
-              >
+              <div key={task._id} className="mb-3 p-4 border rounded-xl bg-gray-50 shadow-sm">
                 {editingId === task._id ? (
                   <div className="space-y-3">
                     <input
@@ -150,10 +135,8 @@ function App() {
                       onChange={(e) =>
                         setTasks(
                           tasks.map((t) =>
-                            t._id === task._id
-                              ? { ...t, title: e.target.value }
-                              : t
-                          )
+                            t._id === task._id ? { ...t, title: e.target.value } : t,
+                          ),
                         )
                       }
                       className="w-full p-2 border rounded-lg"
@@ -163,10 +146,8 @@ function App() {
                       onChange={(e) =>
                         setTasks(
                           tasks.map((t) =>
-                            t._id === task._id
-                              ? { ...t, description: e.target.value }
-                              : t
-                          )
+                            t._id === task._id ? { ...t, description: e.target.value } : t,
+                          ),
                         )
                       }
                       className="w-full p-2 border rounded-lg"
@@ -198,24 +179,20 @@ function App() {
                       <input
                         type="checkbox"
                         checked={task.completed}
-                        onChange={() =>
-                          updateTask(task._id, { completed: !task.completed })
-                        }
+                        onChange={() => updateTask(task._id, { completed: !task.completed })}
                         className="mt-1 h-4 w-4 text-blue-600"
                       />
                       <div>
                         <h4
                           className={`font-semibold text-lg ${
-                            task.completed ? "line-through text-gray-500" : ""
+                            task.completed ? 'line-through text-gray-500' : ''
                           }`}
                         >
                           {task.title}
                         </h4>
                         <p
                           className={`text-sm ${
-                            task.completed
-                              ? "line-through text-gray-400"
-                              : "text-gray-600"
+                            task.completed ? 'line-through text-gray-400' : 'text-gray-600'
                           }`}
                         >
                           {task.description}
