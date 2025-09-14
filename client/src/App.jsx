@@ -9,7 +9,7 @@ function App() {
   const [newTask, setNewTask] = useState({ title: '', description: '' });
   const [editingId, setEditingId] = useState(null);
 
-  let swarnavo = 'unused variable here';
+  // let swarnavo = 'unused variable here';
 
   useEffect(() => {
     fetchTasks();
