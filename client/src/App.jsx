@@ -86,7 +86,7 @@ function App() {
     <div className="min-h-screen w-full max-w-4xl mx-auto p-6">
       <div className="border rounded-2xl shadow-md bg-white p-6">
         <h1 className="text-3xl font-bold mb-6 flex items-center space-x-2">
-          <CheckSquare className="text-blue-600" /> <span>Task Manager</span>
+          <CheckSquare className="text-blue-600" /> <span>Task Manager Edited</span>
         </h1>
 
         {/* Add Task */}
