@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Edit3, Save, X, Loader2, CheckSquare } from 'lucide-react';
 
-const API_BASE = 'http://65.2.130.83:5000/api';
+const API_BASE = import.meta.env.VITE_API_URL;
 
 function App() {
   const [tasks, setTasks] = useState([]);
